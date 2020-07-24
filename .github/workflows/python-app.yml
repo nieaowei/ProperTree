@@ -28,5 +28,5 @@ jobs:
         pip3 show py2app
     - name: Build
       run: |
-        py2applet --make-setup Scripts/shortcut.icns ProperTree.py
+        /Library/Frameworks/Python.framework/Versions/3.8/bin/py2applet --make-setup Scripts/shortcut.icns ProperTree.py
         python3 setup.py py2app
