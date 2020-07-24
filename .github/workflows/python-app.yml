@@ -24,7 +24,7 @@ jobs:
         curl https://www.python.org/ftp/python/3.8.5/python-3.8.5-macosx10.9.pkg -o python.pkg
         sudo installer -pkg python.pkg -target /
         python3 -V
-        sudo pip3 install py2app
+        pip3 install py2app
         pip3 show py2app
     - name: Build
       run: |
