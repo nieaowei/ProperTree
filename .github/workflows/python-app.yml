@@ -16,17 +16,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Install dependencies
+    - name: Install Python3.8.5
       run: |
-        python3 -V
-        which python3
-        which pip3
         curl https://www.python.org/ftp/python/3.8.5/python-3.8.5-macosx10.9.pkg -o python.pkg
         sudo installer -pkg python.pkg -target /
-        python3 -V
+    - name: Install py2app
         pip3 install py2app
-        pip3 show py2app
-    - name: Build
+    - name: Setup
       run: |
         /Library/Frameworks/Python.framework/Versions/3.8/bin/py2applet --make-setup Scripts/shortcut.icns ProperTree.py
         python3 setup.py py2app
