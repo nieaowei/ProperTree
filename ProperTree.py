@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 import sys, os, binascii, base64, json, re
 from collections import OrderedDict
+
+from Scripts import plistwindow, plist
+
 try:
     import Tkinter as tk
     import ttk
