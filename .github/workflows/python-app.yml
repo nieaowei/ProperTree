@@ -31,6 +31,9 @@ jobs:
         python3 setup.py py2app
     - name: Package APP
       run: |
+        unzip dist/ProperTree.app/Contents/Resources/lib/python38.zip -d dist/ProperTree.app/Contents/Resources/lib/python37.zip
+        rm dist/ProperTree.app/Contents/Resources/lib/python38.zip
+        mv dist/ProperTree.app/Contents/Resources/lib/python37.zip dist/ProperTree.app/Contents/Resources/lib/python38.zip
         zip -r ProperTree.app.zip dist/ProperTree.app
     - name: Create Release
       id: create_release
