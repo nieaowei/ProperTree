@@ -21,8 +21,34 @@ jobs:
         curl https://www.python.org/ftp/python/3.8.5/python-3.8.5-macosx10.9.pkg -o python.pkg
         sudo installer -pkg python.pkg -target /
     - name: Install py2app
+      run: |
         pip3 install py2app
     - name: Setup
       run: |
         /Library/Frameworks/Python.framework/Versions/3.8/bin/py2applet --make-setup Scripts/shortcut.icns ProperTree.py
+    - name: Build
+      run: |
         python3 setup.py py2app
+    - name: Package APP
+      run: |
+        zip -r ProperTree.app.zip dist/ProperTree.app
+    - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.RUN_ID }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+    - name: Upload Release Asset
+      id: upload-release-asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+        asset_path: ./dist/ProperTree.app.zip
+        asset_name: ProperTree.app.zip
+        asset_content_type: application/zip
