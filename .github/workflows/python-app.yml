@@ -39,7 +39,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ github.RUN_ID }}
-        release_name: Release ${{ github.ref }}
+        release_name: ProperTree-v${{ github.RUN_ID }}
         draft: false
         prerelease: false
     - name: Upload Release Asset
