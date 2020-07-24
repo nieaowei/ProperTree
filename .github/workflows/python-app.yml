@@ -18,8 +18,10 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install dependencies
       run: |
+        python3 -V
         curl https://www.python.org/ftp/python/3.8.5/python-3.8.5-macosx10.9.pkg -o python.pkg
         sudo installer -pkg python.pkg -target /
+        python3 -V
         pip3 install py2app
         py2applet --make-setup Scripts/shortcut.icns ProperTree.py
         python3 setup.py py2app
