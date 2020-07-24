@@ -23,6 +23,9 @@ jobs:
         sudo installer -pkg python.pkg -target /
         python3 -V
         pip3 install py2app
+        which python3
+        which pip3
+        which py2applet
     - name: Build
       run: |
         py2applet --make-setup Scripts/shortcut.icns ProperTree.py
