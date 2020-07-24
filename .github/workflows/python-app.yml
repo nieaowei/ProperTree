@@ -25,7 +25,7 @@ jobs:
         pip3 install py2app
         which python3
         which pip3
-        which py2applet
+        ls /usr/local/bin
     - name: Build
       run: |
         py2applet --make-setup Scripts/shortcut.icns ProperTree.py
